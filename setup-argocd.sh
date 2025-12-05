@@ -58,7 +58,7 @@ fi
 # Apply secrets
 echo ""
 echo "📝 Applying GHCR image pull secrets..."
-kubectl apply -f ghcr-credentials-secret.yamll
+kubectl apply -f ghcr-credentials-secret.yaml
 echo ""
 echo "📝 Applying config repo secrets..."
 kubectl apply -f argocd-repository-secret.yaml
