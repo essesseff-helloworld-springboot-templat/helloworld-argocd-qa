@@ -7,7 +7,7 @@ metadata:
     app: hello-world
     environment: qa
     essesseff: "true"
-    essesseff.io.repositoryId: "{{REPOSITORY_ID}}"
+    config-env-repo-id: "{{REPOSITORY_ID}}"
 spec:
   project: default
   source:
