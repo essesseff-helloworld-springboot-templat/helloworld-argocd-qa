@@ -23,7 +23,7 @@ data:
     message: |
       Application: {{.app.metadata.name}}
       Event: {{.app.status.operationState.phase}}
-      RepositoryId: {{.app.metadata.labels.config-env-repo-id}}
+      RepositoryId: {{.app.metadata.labels.configenvrepoid}}
       Environment: {{.app.metadata.labels.environment}}
       SyncStatus: {{.app.status.sync.status}}
       HealthStatus: {{.app.status.health.status}}
