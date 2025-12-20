@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/essesseff-hello-world-go-template/hello-world-argocd-qa
+    repoURL: https://github.com/essesseff-hello-world-flask-template/hello-world-argocd-qa
     targetRevision: main
     path: argocd
   destination:
