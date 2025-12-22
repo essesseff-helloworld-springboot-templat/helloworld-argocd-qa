@@ -1,6 +1,6 @@
-# hello-world - Argo CD Application (QA)
+# helloworld - Argo CD Application (QA)
 
-This repository contains the Argo CD Application manifest for the **QA** environment of the hello-world essesseff app.
+This repository contains the Argo CD Application manifest for the **QA** environment of the helloworld essesseff app.
 
 ## See Also
 
@@ -13,15 +13,15 @@ This repository contains the Argo CD Application manifest for the **QA** environ
 ## Repository Structure
 
 ```
-hello-world-argocd-qa/
+helloworld-argocd-qa/
 ├── app-of-apps.yaml                  # Root Application
 ├── argocd/
-│   └── hello-world-qa-application.yaml  # QA environment Application manifest (auto-synced)
+│   └── helloworld-qa-application.yaml  # QA environment Application manifest (auto-synced)
 ├── argocd-repository-secret.yaml     # Argo CD repository secrets
 ├── ghcr-credentials-secret.yaml      # GHCR credentials (set once per K8s cluster for organization)
 ├── notifications-configmap.yaml      # Argo CD notifications configuration
 ├── setup-argocd-cluster.sh           # Argo CD K8s setup script 
-├── setup-argocd.sh                   # Argo CD hello-world-qa essesseff app setup script 
+├── setup-argocd.sh                   # Argo CD helloworld-qa essesseff app setup script 
 └── README.md                          # This file
 ```
 
@@ -41,15 +41,15 @@ hello-world-argocd-qa/
    ./setup-argocd-cluster.sh
    ```
    
-### Deploy hello-world-qa essesseff App to Argo CD
+### Deploy helloworld-qa essesseff App to Argo CD
 
 1. **Configure Argo CD repository access**:
    
    Edit argocd-repository-secret.yaml with your GitHub Argo CD machine username and token
 
    This creates secrets for Argo CD to access:
-   - `hello-world-argocd-qa` repository (to read Application manifests)
-   - `hello-world-config-qa` repository (to read Helm charts and values)
+   - `helloworld-argocd-qa` repository (to read Application manifests)
+   - `helloworld-config-qa` repository (to read Helm charts and values)
   
 2. **Configure Argo CD access to GitHub Container Registry (GHCR)**:
    
@@ -59,8 +59,8 @@ hello-world-argocd-qa/
 
 3. **Configure Argo CD notifications secrets**:
 
-   Request the notifications-secret.yaml file contents from the essesseff UX for hello-world here:
-   https://www.essesseff.com/home/YOUR_essesseff_TEAM_ACCOUNT/apps/hello-world/settings
+   Request the notifications-secret.yaml file contents from the essesseff UX for helloworld here:
+   https://www.essesseff.com/home/YOUR_essesseff_TEAM_ACCOUNT/apps/helloworld/settings
 
    Save the contents to ./notifications-secret.yaml 
 
@@ -70,7 +70,7 @@ hello-world-argocd-qa/
    ./setup-argocd.sh
    ```
 
-   This script applies all secrets, configmaps, Argo CD application definitions, etc. for hello-world QA.
+   This script applies all secrets, configmaps, Argo CD application definitions, etc. for helloworld QA.
 
 5. **Verify in Argo CD UI**:
    ```bash
@@ -79,21 +79,21 @@ hello-world-argocd-qa/
    ```
    
    You should see:
-   - `hello-world-argocd-qa` - Root Application (watches this repository)
-   - `hello-world-qa` - Environment Application (auto-synced by root Application)
+   - `helloworld-argocd-qa` - Root Application (watches this repository)
+   - `helloworld-qa` - Environment Application (auto-synced by root Application)
 
 6. **Access the deployed application**:
    ```bash
-   kubectl port-forward service/hello-world-qa 8081:80 -n essesseff-hello-world-flask-template
+   kubectl port-forward service/helloworld-qa 8081:80 -n essesseff-helloworld-springboot-templat
    # Access: http://localhost:8081
    ```
 
 ## Application Details
 
-- **Name**: `hello-world-qa`
+- **Name**: `helloworld-qa`
 - **Namespace**: `argocd`
-- **Source Repository**: `hello-world-config-qa`
-- **Destination Namespace**: `essesseff-hello-world-flask-template`
+- **Source Repository**: `helloworld-config-qa`
+- **Destination Namespace**: `essesseff-helloworld-springboot-templat`
 - **Sync Policy**: Automated with prune and self-heal enabled
 
 ## Deployment Process
@@ -107,9 +107,9 @@ hello-world-argocd-qa/
 
 ## Repository URLs
 
-- **Source**: `https://github.com/essesseff-hello-world-flask-template/hello-world`
-- **Config QA**: `https://github.com/essesseff-hello-world-flask-template/hello-world-config-qa`
-- **Argo CD QA**: `https://github.com/essesseff-hello-world-flask-template/hello-world-argocd-qa` (this repo)
+- **Source**: `https://github.com/essesseff-helloworld-springboot-templat/helloworld`
+- **Config QA**: `https://github.com/essesseff-helloworld-springboot-templat/helloworld-config-qa`
+- **Argo CD QA**: `https://github.com/essesseff-helloworld-springboot-templat/helloworld-argocd-qa` (this repo)
 
 ## essesseff Integration
 
@@ -133,7 +133,7 @@ kubectl patch configmap argocd-cm -n argocd --type merge -p '{"data":{"timeout.r
 This will:
 - Set base polling interval to 60 seconds
 - Add up to 10 seconds of jitter (total: 60-70 seconds)
-- Allow Argo CD to detect changes in `argocd/hello-world-qa-application.yaml` more quickly
+- Allow Argo CD to detect changes in `argocd/helloworld-qa-application.yaml` more quickly
 
 ## How It Works
 
