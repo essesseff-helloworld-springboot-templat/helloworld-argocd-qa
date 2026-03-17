@@ -33,7 +33,7 @@ helloworld-argocd-qa/
 ├── ghcr-credentials-secret.yaml.template          # GHCR credentials (set once per K8s cluster for organization) template
 ├── notifications-configmap.yaml.template          # Argo CD notifications configuration template
 ├── offboarding/
-│   └── offboard-essesseff-helloworld-springboot-templat.sh # script for offboarding the essesseff-helloworld-springboot-templat namespace from K8s
+│   └── offboard-essesseff-helloworld-springboot-templat.sh # script for offboarding the {{K8S_NAMESPACE}} namespace from K8s
 │   └── offboard-helloworld-qa.sh    # script for offboarding the helloworld qa app 1) from essesseff only or 2) from Argo CD and K8s entirely
 ├── setup-argocd-cluster.sh           # Argo CD K8s setup script 
 ├── setup-argocd.sh                   # Argo CD helloworld-qa essesseff app setup script 
@@ -122,7 +122,7 @@ helloworld-argocd-qa/
 
 6. **Access the Deployed Application**:
    ```bash
-   kubectl port-forward service/helloworld-qa 8081:80 -n essesseff-helloworld-springboot-templat
+   kubectl port-forward service/helloworld-qa 8081:80 -n {{K8S_NAMESPACE}}
    # Access: http://localhost:8081
    ```
 ### How to Offboard helloworld-qa Deployment from Argo CD and K8s
@@ -148,7 +148,7 @@ helloworld-argocd-qa/
 - **Name**: `helloworld-qa`
 - **Namespace**: `argocd`
 - **Source Repository**: `helloworld-config-qa`
-- **Destination Namespace**: `essesseff-helloworld-springboot-templat`
+- **Destination Namespace**: `{{K8S_NAMESPACE}}`
 - **Sync Policy**: Automated with prune and self-heal enabled
 
 ## Deployment Process
